@@ -47,3 +47,11 @@ fun sign n =
   else (*n<0*) ~1;
 
 fun isLower c = #"a" <= c andalso c <= #"z";
+
+(* PAIRS, TUPLES AND RECORDS *)
+
+(2.5, ~1.2);
+
+val zerovec = (0.0, 0.0);
+val a = (1.5, 6.8);
+val b = (3.6, 0.0);
