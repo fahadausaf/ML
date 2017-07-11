@@ -93,6 +93,22 @@ scalevec(2.0, it);
 val (xc,yc) = scalevec(4.0, a);
 val ((x1,y1), (x2,y2)) = (addvec(a,b), subvec(a,b));
 
+(* WRITING RECURSIVE FUNCTIONS *)
+
+fun gcd(m,n) =
+  if m=0 then n
+  else gcd(n mod m, m);
+
+gcd(5499,6812);
+
+fun power(x,k) : real =
+  if k=1 then x
+  else if k mod 2 = 0 then power(x*x, k div 2)
+  else x * power(x*x, k div 2);
+
+power(2.0,10);
+power(1.01,925);
+Math.pow(1.01,925.0);
 
 
 
