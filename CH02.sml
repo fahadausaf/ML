@@ -126,5 +126,4 @@ fun itfib (n, prev, curr) : int =
   else itfib (n-1, curr, prev+curr);
 
 fun fib(n) = itfib(n,0,1);
-
 fib 30;
