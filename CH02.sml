@@ -128,25 +128,3 @@ fun itfib (n, prev, curr) : int =
 fun fib(n) = itfib(n,0,1);
 
 fib 30;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-(**)
