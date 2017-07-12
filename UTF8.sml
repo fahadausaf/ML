@@ -6,6 +6,7 @@ val cent    = "00A2";   (*11000010 10100010*)
 val euro    = "20AC";   (*11100010 10000010 10101100*)
 val hwair   = "10348";  (*11110000 10010000 10001101 10001000*)
 
+(*
 fun getbits x =
   if x >= "0000" andalso  x <= "007F"         then "0xxxxxxx"
   else if x >= "0080" andalso  x <= "07FF"    then "110xxxxx10xxxxxx"
@@ -17,6 +18,18 @@ getbits dollar;
 getbits cent;
 getbits euro;
 getbits hwair;
+*)
 
-length (explode dollar);
-length (explode hwair);
+fun string_length x = length(explode x);
+string_length dollar;
+string_length hwair;
+
+
+fun getbits2 x =
+  if length(explode x) < 5 then "four"
+  else "five";
+
+getbits2 dollar;
+getbits2 cent;
+getbits2 euro;
+getbits2 hwair;
