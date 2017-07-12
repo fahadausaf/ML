@@ -59,9 +59,9 @@ val cent    = "00A2";   (*11000010 10100010*)
 val euro    = "20AC";   (*11100010 10000010 10101100*)
 val hwair   = "10348";  (*11110000 10010000 10001101 10001000*)
 
-encode_utf8 dollar;
-encode_utf8 cent;
-encode_utf8 euro;
+implode(encode_utf8 dollar);
+implode(encode_utf8 cent);
+implode(encode_utf8 euro);
 
 
 
