@@ -127,3 +127,61 @@ fun itfib (n, prev, curr) : int =
 
 fun fib(n) = itfib(n,0,1);
 fib 30;
+
+(* LOCAL DECLARATIONS *)
+
+fun fraction (n,d) = (n div gcd(n,d), d div gcd(n,d));
+
+fun divideboth (n,d, com: int) = (n div com, d div com);
+fun fraction (n,d) = divideboth (n, d, gcd(n,d));
+
+fun fraction (n,d) =
+  let val com = gcd(n,d)
+  in (n div com, d div com) end;
+
+fun findroot (a, x, acc) =
+  let val nextx = (a/x + x) / 2.0
+  in if abs (x-nextx) < acc*x
+    then nextx else findroot (a, nextx, acc)
+  end;
+
+fun sqroot a = findroot (a, 1.0, 1.0E~10);
+
+sqroot 2.0;
+it*it;
+
+
+fun sqroot2 a =
+  let val acc = 1.0E~10
+    fun findroot x =
+      let val nextx = (a/x + x) / 2.0
+      in if abs (x-nextx) < acc*x
+        then nextx else findroot nextx
+      end
+  in findroot 1.0 end;
+
+sqroot2 3.0;
+it*it;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(**)
