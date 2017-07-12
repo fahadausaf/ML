@@ -1,16 +1,5 @@
 (* UTF-8 Encoding *)
 
-fun string_length x = length(explode x);
-string_length dollar;
-string_length hwair;
-
-(*few sample unicodes*)
-val dollar  = "0024";   (*00100100*)
-val cent    = "00A2";   (*11000010 10100010*)
-val euro    = "20AC";   (*11100010 10000010 10101100*)
-val hwair   = "10348";  (*11110000 10010000 10001101 10001000*)
-
-
 fun get_number_of_bytes x =
   let val l = explode x in
     if length(l) < 5 then
@@ -24,11 +13,6 @@ fun get_number_of_bytes x =
       end
     else 4
   end;
-
-get_number_of_bytes dollar;
-get_number_of_bytes cent;
-get_number_of_bytes euro;
-get_number_of_bytes hwair;
 
 fun get_binary (c: char): char list =
   case c of
@@ -50,21 +34,10 @@ fun get_binary (c: char): char list =
   | #"F" => explode "1111"
   | _ => [];
 
-get_binary(#"E");
-
 fun hex_to_binary (l: char list): char list =
   case l of
     [] => []
   | x::xs => (get_binary x) @ (hex_to_binary xs);
-
-(*
-val b = hex_to_binary (explode euro);
-
-val first = (explode "1110") @ List.take(b, 4);
-val remaining = List.drop(b, 4);
-val second = [#"1",#"0"] @ List.take(remaining, 6);
-val third = [#"1",#"0"] @ List.drop(remaining, 6);
-*)
 
 fun encode_utf8 s =
   let val byte_count = get_number_of_bytes s
@@ -76,18 +49,19 @@ fun encode_utf8 s =
       and third = [#"1",#"0"] @ List.drop(remaining, 6) in
         first @ second @ third
       end
-    else [#"9"]
+    else if byte_count = 2 then [#"2"]
+    else [#"1"]
   end;
 
+(*few sample unicodes*)
+val dollar  = "0024";   (*00100100*)
+val cent    = "00A2";   (*11000010 10100010*)
+val euro    = "20AC";   (*11100010 10000010 10101100*)
+val hwair   = "10348";  (*11110000 10010000 10001101 10001000*)
+
+encode_utf8 dollar;
+encode_utf8 cent;
 encode_utf8 euro;
-
-
-
-(*
-charToByte(#"A");
-
-ord(#"0");
-*)
 
 
 
