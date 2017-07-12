@@ -55,10 +55,9 @@ get_binary(#"E");
 fun hex_to_binary (l: char list): char list =
   case l of
     [] => []
-  | x::xs => (get_binary x) :: (hex_to_binary xs);
+  | x::xs => (get_binary x) @ (hex_to_binary xs);
 
-
-
+hex_to_binary (explode euro);
 
 (*
 charToByte(#"A");
