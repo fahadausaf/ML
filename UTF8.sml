@@ -57,7 +57,31 @@ fun hex_to_binary (l: char list): char list =
     [] => []
   | x::xs => (get_binary x) @ (hex_to_binary xs);
 
-hex_to_binary (explode euro);
+(*
+val b = hex_to_binary (explode euro);
+
+val first = (explode "1110") @ List.take(b, 4);
+val remaining = List.drop(b, 4);
+val second = [#"1",#"0"] @ List.take(remaining, 6);
+val third = [#"1",#"0"] @ List.drop(remaining, 6);
+*)
+
+fun encode_utf8 s =
+  let val byte_count = get_number_of_bytes s
+  and binary = hex_to_binary (explode s) in
+    if byte_count = 3 then
+      let val first = (explode "1110") @ List.take(binary, 4)
+      and remaining = List.drop(binary, 4)
+      and second = [#"1",#"0"] @ List.take(remaining, 6)
+      and third = [#"1",#"0"] @ List.drop(remaining, 6) in
+        first @ second @ third
+      end
+    else [#"9"]
+  end;
+
+encode_utf8 euro;
+
+
 
 (*
 charToByte(#"A");
