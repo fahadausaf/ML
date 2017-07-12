@@ -62,23 +62,3 @@ val hwair   = "10348";  (*11110000 10010000 10001101 10001000*)
 implode(encode_utf8 dollar);
 implode(encode_utf8 cent);
 implode(encode_utf8 euro);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-(**)
