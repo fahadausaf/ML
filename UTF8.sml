@@ -101,24 +101,30 @@ fun decode_utf8 s =
           let val second = List.take(List.drop(l, 10), 6) in
             let val third = List.take(List.drop(l,18), 6) in
               let val fourth = List.drop(l, 26) in
-                let val binary = first @ second @ third @ fourth in
-                  binary_to_hex(binary)
-                end
+                binary_to_hex(first @ second @ third @ fourth)
               end
             end
           end
         end
-      else if len = 24 then "3"
-      else if len = 16 then "2"
-      else "1"
+      else if len = 24 then
+        let val first = List.drop(List.take(l, 8), 4) in
+          let val second = List.take(List.drop(l, 10), 6) in
+            let val third = List.take(List.drop(l,18), 6) in
+              binary_to_hex(first @ second @ third)
+            end
+          end
+        end
+      else if len = 16 then
+      let val first = List.drop(List.take(l, 8), 3) in
+        let val second = List.take(List.drop(l, 10), 6) in
+          binary_to_hex((explode "00000") @ first @ second)
+        end
+      end
+      else binary_to_hex((explode "000000000") @ List.drop(l,1))
     end
   end;
 
-decode_utf8 "11110000100100001000110110001000";
-decode_utf8 "111000101000001010101100";
-decode_utf8 "1100001010100010";
-decode_utf8 "00100100";
-(*
+
 (*few sample unicodes*)
 val dollar  = "0024";   (*00100100*)
 val cent    = "00A2";   (*11000010 10100010*)
@@ -129,4 +135,12 @@ implode(encode_utf8 dollar);
 implode(encode_utf8 cent);
 implode(encode_utf8 euro);
 implode(encode_utf8 hwair);
-*)
+
+decode_utf8 "11110000100100001000110110001000";
+decode_utf8 (implode(encode_utf8 hwair));
+decode_utf8 "111000101000001010101100";
+decode_utf8 (implode(encode_utf8 euro));
+decode_utf8 "1100001010100010";
+decode_utf8 (implode(encode_utf8 cent));
+decode_utf8 "00100100";
+decode_utf8 (implode(encode_utf8 dollar));
