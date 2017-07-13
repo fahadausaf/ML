@@ -1,6 +1,6 @@
 (* UTF-8 Encoding *)
 
-fun get_number_of_bytes x =
+fun get_byte_count x =
   let val l = explode x in
     if length(l) < 5 then
       let val first = List.nth(l, 0)
@@ -40,7 +40,7 @@ fun hex_to_binary (l: char list): char list =
   | x::xs => (get_binary x) @ (hex_to_binary xs);
 
 fun encode_utf8 s =
-  let val byte_count = get_number_of_bytes s
+  let val byte_count = get_byte_count s
   and binary = hex_to_binary (explode s) in
     if byte_count = 3 then
       let val first = (explode "1110") @ List.take(binary, 4)
