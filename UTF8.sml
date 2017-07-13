@@ -66,6 +66,59 @@ fun encode_utf8 s =
     else [#"0"] @ List.drop(binary, 9)
   end;
 
+fun get_hex s =
+  case s of
+    "0000" => "0"
+  | "0001" => "1"
+  | "0010" => "2"
+  | "0011" => "3"
+  | "0100" => "4"
+  | "0101" => "5"
+  | "0110" => "6"
+  | "0111" => "7"
+  | "1000" => "8"
+  | "1001" => "9"
+  | "1010" => "A"
+  | "1011" => "B"
+  | "1100" => "C"
+  | "1101" => "D"
+  | "1110" => "E"
+  | "1111" => "F"
+  | _ => "";
+
+fun binary_to_hex(l: char list): string =
+  case l of
+    [] => ""
+  | x1::x2::x3::x4::xs => get_hex((Char.toString x1) ^ (Char.toString x2) ^
+    (Char.toString x3) ^ (Char.toString x4)) ^ (binary_to_hex xs)
+  | _ => ""
+
+fun decode_utf8 s =
+  let val l = explode s in
+    let val len = length(l) in
+      if len = 32 then
+        let val first = List.drop(List.take(l, 8), 6) in
+          let val second = List.take(List.drop(l, 10), 6) in
+            let val third = List.take(List.drop(l,18), 6) in
+              let val fourth = List.drop(l, 26) in
+                let val binary = first @ second @ third @ fourth in
+                  binary_to_hex(binary)
+                end
+              end
+            end
+          end
+        end
+      else if len = 24 then "3"
+      else if len = 16 then "2"
+      else "1"
+    end
+  end;
+
+decode_utf8 "11110000100100001000110110001000";
+decode_utf8 "111000101000001010101100";
+decode_utf8 "1100001010100010";
+decode_utf8 "00100100";
+(*
 (*few sample unicodes*)
 val dollar  = "0024";   (*00100100*)
 val cent    = "00A2";   (*11000010 10100010*)
@@ -76,3 +129,4 @@ implode(encode_utf8 dollar);
 implode(encode_utf8 cent);
 implode(encode_utf8 euro);
 implode(encode_utf8 hwair);
+*)
