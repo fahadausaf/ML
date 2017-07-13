@@ -45,9 +45,9 @@ fun encode_utf8 s =
     if byte_count = 4 then
       let val first = (explode "111100") @ List.take(binary, 2)
       and second = [#"1",#"0"] @ List.take(List.drop(binary,2), 6)
-      and remaining = List.drop(binary,8)
+      and remaining = List.drop(binary,8)(*
       and third = [#"1",#"0"] @ List.take(remaining, 6)
-      and fourth = [#"1",#"0"] @ List.drop(remaining, 6)
+      and fourth = [#"1",#"0"] @ List.drop(remaining, 6)*)
       in
         first @ second @ [#"1",#"0"] @ List.take(remaining, 6) @ [#"1",#"0"] @ List.drop(remaining, 6)
       end
