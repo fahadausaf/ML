@@ -42,7 +42,8 @@ fun hex_to_binary (l: char list): char list =
 fun encode_utf8 s =
   let val byte_count = get_byte_count s
   and binary = hex_to_binary (explode s) in
-    if byte_count = 3 then
+    if byte_count = 4 then [#"4"]
+    else if byte_count = 3 then
       let val first = (explode "1110") @ List.take(binary, 4)
       and remaining = List.drop(binary, 4)
       and second = [#"1",#"0"] @ List.take(remaining, 6)
@@ -57,10 +58,18 @@ fun encode_utf8 s =
     else [#"0"] @ List.drop(binary, 9)
   end;
 
-fun encode_utf8_3bytes s =
+fun encode_utf8_5bytes s =
   let val byte_count = get_byte_count s
   and binary = hex_to_binary (explode s) in
-    if byte_count = 4 then [#"4"]
+    if byte_count = 4 then
+      let val first = (explode "111100") @ List.take(binary, 2)
+      and second = [#"1",#"0"] @ List.take(List.drop(binary,2), 6)
+      and remaining = List.drop(binary,8)
+      and third = [#"1",#"0"] @ List.take(remaining, 6)
+      and fourth = [#"1",#"0"] @ List.drop(remaining, 6)
+      in
+        first @ second @ [#"1",#"0"] @ List.take(remaining, 6) @ [#"1",#"0"] @ List.drop(remaining, 6)
+      end
     else if byte_count = 3 then
       let val first = (explode "1110") @ List.take(binary, 4)
       and remaining = List.drop(binary, 4)
@@ -82,10 +91,11 @@ val cent    = "00A2";   (*11000010 10100010*)
 val euro    = "20AC";   (*11100010 10000010 10101100*)
 val hwair   = "10348";  (*11110000 10010000 10001101 10001000*)
 
-implode(encode_utf8_3bytes dollar);
-implode(encode_utf8_3bytes cent);
-implode(encode_utf8_3bytes euro);
-implode(encode_utf8_3bytes hwair);
+(*
+implode(encode_utf8_5bytes dollar);
+implode(encode_utf8_5bytes cent);
+implode(encode_utf8_5bytes euro);
+*)implode(encode_utf8_5bytes hwair);
 
 
 
