@@ -76,23 +76,3 @@ implode(encode_utf8 dollar);
 implode(encode_utf8 cent);
 implode(encode_utf8 euro);
 implode(encode_utf8 hwair);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  (**)
