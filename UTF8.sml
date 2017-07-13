@@ -40,18 +40,21 @@ fun hex_to_binary (l: char list): char list =
   | x::xs => (get_binary x) @ (hex_to_binary xs);
 
 fun encode_utf8 s =
-  let val byte_count = get_byte_count s
-  and binary = hex_to_binary (explode s) in
-    if byte_count = 3 then
-      let val first = (explode "1110") @ List.take(binary, 4)
-      and remaining = List.drop(binary, 4)
-      and second = [#"1",#"0"] @ List.take(remaining, 6)
-      and third = [#"1",#"0"] @ List.drop(remaining, 6) in
-        first @ second @ third
-      end
-    else if byte_count = 2 then
-      [#"2"]
-    else [#"1"]
+let val byte_count = get_byte_count s
+and binary = hex_to_binary (explode s) in
+  if byte_count = 3 then
+    let val first = (explode "1110") @ List.take(binary, 4)
+    and remaining = List.drop(binary, 4)
+    and second = [#"1",#"0"] @ List.take(remaining, 6)
+    and third = [#"1",#"0"] @ List.drop(remaining, 6) in
+      first @ second @ third
+    end
+  else if byte_count = 2 then
+    let val first = (explode "110") @ List.drop(List.take(binary, 10), 5)
+    and second = [#"1",#"0"] @ List.drop(binary, 10) in
+      first @ second
+    end
+  else [#"1"]
   end;
 
 (*few sample unicodes*)
@@ -60,37 +63,6 @@ val cent    = "00A2";   (*11000010 10100010*)
 val euro    = "20AC";   (*11100010 10000010 10101100*)
 val hwair   = "10348";  (*11110000 10010000 10001101 10001000*)
 
-(*
 implode(encode_utf8 dollar);
 implode(encode_utf8 cent);
 implode(encode_utf8 euro);
-*)
-
-fun encode_utf8_2bytes s =
-  let val byte_count = get_byte_count s
-  and binary = hex_to_binary (explode s) in
-    if byte_count = 3 then
-      let val first = (explode "1110") @ List.take(binary, 4)
-      and remaining = List.drop(binary, 4)
-      and second = [#"1",#"0"] @ List.take(remaining, 6)
-      and third = [#"1",#"0"] @ List.drop(remaining, 6) in
-        first @ second @ third
-      end
-    else if byte_count = 2 then
-      let val first = (explode "110") @ List.drop(List.take(binary, 10), 5)
-      and second = [#"1",#"0"] @ List.drop(binary, 10) in
-        first @ second
-      end
-    else [#"1"]
-  end;
-
-implode(encode_utf8_2bytes cent);
-
-
-
-
-
-
-
-
-(**)
