@@ -66,6 +66,8 @@ fun encode_utf8 s =
     else [#"0"] @ List.drop(binary, 9)
   end;
 
+(* UTF-8 Encoding *)
+
 fun get_hex s =
   case s of
     "0000" => "0"
