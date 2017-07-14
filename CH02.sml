@@ -101,6 +101,20 @@ fun earlier ((h1, m1, apm1), (h2:int, m2:int, apm2)) =
   apm1 = "AM" andalso apm2 = "PM"
   orelse apm1=apm2 andalso (h1<h2 orelse h1=h2 andalso m1<m2);
 
+earlier ((12,12,"AM"),(12,12,"PM"));
+
+(*  Exercise 2.7 Old English money had 12 pence in a shilling and 20 shillings
+    in a pound. Write functions to add and subtract two amounts, working with
+    triples (pounds, shillings, pence). *)
+
+fun addPounds (l1, l2, (scarry, s), d) = (scarry + l1 + l2, s, d);
+
+fun addShillings (l1, l2, s1, s2, (dcarry,d)) =
+    addPounds (l1, l2, quorem(dcarry + s1 + s2, 20), d);
+
+fun addMoney ((l1,s1,d1), (l2,s2,d2)) =
+    addShillings (l1, l2, s1, s2, quorem(d1 + d2, 12));
+
 (* WRITING RECURSIVE FUNCTIONS *)
 
 fun gcd(m,n) =
