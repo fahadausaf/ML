@@ -93,6 +93,14 @@ scalevec(2.0, it);
 val (xc,yc) = scalevec(4.0, a);
 val ((x1,y1), (x2,y2)) = (addvec(a,b), subvec(a,b));
 
+(*  Exercise 2.6 Write a function to determine whether one time of day, in the
+    form (hours, minutes, AM or PM), comes before another. As an example,
+    (11, 59, "AM") comes before (1, 15, "PM"). *)
+
+fun earlier ((h1, m1, apm1), (h2:int, m2:int, apm2)) =
+  apm1 = "AM" andalso apm2 = "PM"
+  orelse apm1=apm2 andalso (h1<h2 orelse h1=h2 andalso m1<m2);
+
 (* WRITING RECURSIVE FUNCTIONS *)
 
 fun gcd(m,n) =
