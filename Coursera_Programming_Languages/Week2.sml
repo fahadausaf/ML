@@ -1,5 +1,7 @@
+
+
 (* My first ML program *)
-(*
+
 val x = 94;
 val y = 17;
 val z = (x+y) + (y+2);
@@ -134,7 +136,7 @@ fun seconds (xs : (int * int) list) =
 
 fun sum_pair_list2 (xs : (int * int) list) =
   (sum_list (firsts xs)) + (sum_list (seconds xs))
-*)
+
 
 (* Let Expressions *)
 
@@ -155,3 +157,39 @@ fun silly2 () =
   end
 
 silly2 ();
+
+
+
+(* Nested Functions *)
+
+fun count (from: int, to: int) =
+  if from=to
+  then to::[]
+  else from::count(from+1, to);
+
+fun countup_from1(x: int) =
+  count(1,x);
+
+countup_from1 7;
+
+fun countup_from1b(x: int) =
+  let fun count (from: int, to: int) =
+    if from=to
+    then to::[]
+    else from::count(from+1, to)
+  in
+    count(1,x)
+  end;
+
+countup_from1b 7;
+
+fun countup_from1_better (x : int) =
+  let fun count (from:int) =
+    if from=x
+    then x::[]
+    else from :: count(from+1)
+  in
+    count 1
+  end;
+
+  countup_from1_better 7;
