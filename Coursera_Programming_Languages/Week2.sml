@@ -56,6 +56,30 @@ sort_pair x;
 sort_pair (4,3);
 
 val x1 = (7, (true,9));
-val x2 = #1 (#2 x1)
-val x3 = (#2 x1)
-val x4 = ((3,5),((4,8),(0,0)))
+val x2 = #1 (#2 x1);
+val x3 = (#2 x1);
+val x4 = ((3,5),((4,8),(0,0)));
+
+(* Lists *)
+
+[];
+[3,4,5];
+[4,3];
+[3,4,5,6];
+[(1+2),3+4,7];
+[true,false,true];
+val x = [7,8,9];
+5::x;
+6::5::x;
+
+[6]::[[7,5],[5,2]];
+
+null x;
+null [];
+
+x;
+hd x;
+tl x;
+hd(tl x);
+tl(tl x);
+tl(tl(tl x));
