@@ -44,8 +44,8 @@ fun encode_utf8 s =
   and binary = hex_to_binary (explode s) in
     if byte_count = 4 then
       let val first = (explode "111100") @ List.take(binary, 2)
-      and second = [#"1",#"0"] @ List.take(List.drop(binary,2), 6)
-      and remaining = List.drop(binary,8)(*
+      val second = [#"1",#"0"] @ List.take(List.drop(binary,2), 6)
+      val remaining = List.drop(binary,8)(*
       and third = [#"1",#"0"] @ List.take(remaining, 6)
       and fourth = [#"1",#"0"] @ List.drop(remaining, 6)*)
       in
@@ -53,9 +53,9 @@ fun encode_utf8 s =
       end
     else if byte_count = 3 then
       let val first = (explode "1110") @ List.take(binary, 4)
-      and remaining = List.drop(binary, 4)
-      and second = [#"1",#"0"] @ List.take(remaining, 6)
-      and third = [#"1",#"0"] @ List.drop(remaining, 6) in
+      val remaining = List.drop(binary, 4)
+      val second = [#"1",#"0"] @ List.take(remaining, 6)
+      val third = [#"1",#"0"] @ List.drop(remaining, 6) in
         first @ second @ third
       end
     else if byte_count = 2 then
@@ -126,7 +126,7 @@ fun decode_utf8 s =
     end
   end;
 
-
+(*
 (*few sample unicodes*)
 val dollar  = "0024";   (*00100100*)
 val cent    = "00A2";   (*11000010 10100010*)
@@ -146,3 +146,13 @@ decode_utf8 "1100001010100010";
 decode_utf8 (implode(encode_utf8 cent));
 decode_utf8 "00100100";
 decode_utf8 (implode(encode_utf8 dollar));
+*)
+
+val usd = "$";
+
+fun digit i = chr(i + ord #"0");
+digit 49;
+
+Char.ord #"A";
+
+WideChar.char

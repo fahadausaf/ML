@@ -107,14 +107,39 @@ earlier ((12,12,"AM"),(12,12,"PM"));
     in a pound. Write functions to add and subtract two amounts, working with
     triples (pounds, shillings, pence). *)
 
+fun quorem (m,n) = (m div n, m mod n);
 fun addPounds (l1, l2, (scarry, s), d) = (scarry + l1 + l2, s, d);
-
 fun addShillings (l1, l2, s1, s2, (dcarry,d)) =
-    addPounds (l1, l2, quorem(dcarry + s1 + s2, 20), d);
-
+  addPounds (l1, l2, quorem(dcarry + s1 + s2, 20), d);
 fun addMoney ((l1,s1,d1), (l2,s2,d2)) =
-    addShillings (l1, l2, s1, s2, quorem(d1 + d2, 12));
+  addShillings (l1, l2, s1, s2, quorem(d1 + d2, 12));
 
+{name="Jones", age=25, salary=15300};
+{name="Jones", salary=15300, age=25};
+
+val henryV =
+  { name    = "Henry V",
+    born    = 1387,
+    crowned = 1412,
+    died    = 1422,
+    quote   = "Bid them achieve me and then sell my bones" };
+
+val henryVI =
+  { name    = "Henry VI",
+    born    = 1421,
+    crowned = 1422,
+    died    = 1471,
+    quote   = "weep, wretched man, \
+    \ I'll aid thee tear for tear" };
+
+val richardIII =
+  { name    = "RichardIII",
+    born    = 1452,
+    crowned = 1483,
+    died    = 1485,
+    quote   = "Plots have I laid..." };
+
+(*
 (* WRITING RECURSIVE FUNCTIONS *)
 
 fun gcd(m,n) =
@@ -184,7 +209,7 @@ fun sqroot2 a =
 
 sqroot2 3.0;
 it*it;
-
+*)
 
 
 

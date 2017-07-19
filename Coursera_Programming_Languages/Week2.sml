@@ -270,11 +270,11 @@ fun max2 (xs : int list) =
     	if null (tl xs) (* xs better not be [] *)
     	then hd xs
     	else let val tl_ans = max_nonempty(tl xs)
-    	     in
-        		 if hd xs > tl_ans
-        		 then hd xs
-        		 else tl_ans
-        	     end
+      in
+       if hd xs > tl_ans
+       then hd xs
+       else tl_ans
+     end
     in
       SOME (max_nonempty xs)
     end
