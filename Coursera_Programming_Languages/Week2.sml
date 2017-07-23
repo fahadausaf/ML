@@ -1,4 +1,3 @@
-(*
 
 (* My first ML program *)
 
@@ -229,7 +228,7 @@ fun good_max (xs : int list) =
     then hd xs
     else tl_ans
   end
-*)
+
 
 (* Options *)
 
