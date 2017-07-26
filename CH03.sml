@@ -39,8 +39,21 @@ explode "Banquo";
 fun null [] = true
   | null (_::_) = false;
 
+fun hd (x::_) = x;
 
+hd[[[1,2],[3]], [[4]]];
+hd it;
+hd it;
 
+fun tl (_::xs) = xs;
+
+tl ["Out", "damned", "spot!"];
+tl it;
+tl it;
+
+fun prod ns = if null ns then 1 else (hd ns) * (prod (tl ns));
+
+prod [1,2,3,4,5];
 
 
 
