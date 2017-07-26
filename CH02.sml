@@ -185,6 +185,32 @@ op++ ((2.5,0.0), (0.1,2.5));
 op^ ("Mont","joy");
 
 
+(* THE EVALUATION OF EXPRESSIONS *)
+
+fun sqr(x) : int = x*x;
+
+fun zero(x: int) = 0;
+
+(* 2.12 recursive functions under call-by-name *)
+
+fun fact n =
+  if n=0 then 1 else n * fact(n-1);
+
+fact 7;
+fact 12;
+
+fun facti (n,p) =
+  if n=0 then p else facti(n-1, n*p);
+
+facti(4,1);
+
+fun cond (p,x,y): int = if p then x else y;
+fun badf n = cond(n=0, 1, n*badf(n-1));
+
+fun even n = (n mod 2 = 0);
+fun powoftwo n =
+  (n=1) orelse
+  (even(n) andalso powoftwo(n div 2));
 
 (*
 (* WRITING RECURSIVE FUNCTIONS *)
