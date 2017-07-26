@@ -346,7 +346,40 @@ signature ARITH =
   val quo : t * t -> t
   end;
 
+(* Exercise 2.24: Declare a structure Real, matching signature ARITH, such that
+Real. t is the type realand the components zero, sum, prod, etc., denote the
+corresponding operations on type real. *)
 
+structure Real : ARITH =
+  struct
+  type t = real;
+  val zero = 0.0;
+  fun sum   (x,y) = x+y: t;
+  fun diff  (x,y) = x-y: t;
+  fun prod  (x,y) = x*y: t;
+  fun quo   (x,y) = x/y: t;
+  end;
+
+(* Exercise 2.25 Complete the declaration of structure Rational above, basing
+your definitions on the laws n/d + n′/d′ = (nd′ + n′d)/dd′, (n/d) × (n′/d′) = nn′/dd′,
+and 1/(n/d) = d/n. Use the function gcdto maintain the fractions in lowest terms,
+and ensure that the denominator is always positive.*)
+
+structure Rational : ARITH =
+  struct
+  type t = int*int;
+  val zero = (0, 1);
+  fun gcd(m,n) =
+    if m=0 then  n  else gcd(n mod m, m);
+  fun canon (m,n) =
+      let val d = gcd(abs m, n)
+      in  (m div d, n div d)  end
+  fun sum   ((m,n), (m',n')) = canon(m*n' + m'*n, n*n');
+  fun diff  ((m,n), (m',n')) = canon(m*n' - m'*n, n*n');
+  fun prod  ((m,n), (m',n')) = canon(m*m', n*n');
+  fun recip (m,n): t = if m<0 then (~n,~m) else (n,m)
+  fun quo   (x,x') = prod(x, recip x');
+  end;
 
 
 
