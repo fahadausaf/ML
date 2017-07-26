@@ -31,3 +31,35 @@ fun factl (n) = prod(upto(1,n));
 factl 7;
 
 explode "Banquo";
+
+(* SOME FUNDAMENTAL LIST FUNCTIONS *)
+
+(* 3.3 Testing lists and taking them apart *)
+
+fun null [] = true
+  | null (_::_) = false;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(**)
