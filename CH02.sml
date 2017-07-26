@@ -381,7 +381,28 @@ structure Rational : ARITH =
   fun quo   (x,x') = prod(x, recip x');
   end;
 
+(* POLYMORPHIR TYPES *)
 
+fun pairself x = (x,x);
+pairself 4.0;
+pairself 7;
+
+val pp = pairself ("Help!",999);
+
+fun fst (x,y) = x;
+fun snd (x,y) = y;
+
+fst pp;
+fst(snd pp);
+
+fun fstfst z = fst(fst z);
+fstfst pp;
+
+fun silly x = fstfst(pairself(pairself x));
+
+silly "Hold off your hands.";
+
+fun I x = x;
 
 
 
