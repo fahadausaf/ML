@@ -139,6 +139,51 @@ val richardIII =
     died    = 1485,
     quote   = "Plots have I laid..." };
 
+type king =
+  { name    : string,
+    born    : int,
+    crowned : int,
+    died    : int,
+    quote   : string };
+
+fun lifetime(k: king) = #died k - #born k;
+
+lifetime henryVI;
+lifetime henryV;
+lifetime richardIII;
+
+(* 2.10 Infix Operators *)
+
+infix xor;
+fun (p xor q) = (p orelse q) andalso not (p andalso q);
+
+true xor false xor true;
+
+infix 6 plus;
+fun (a plus b) = "(" ^ a ^ "+" ^ b ^ ")";
+
+"1" plus "2" plus "3";
+
+infix 7 times;
+fun (a times b) = "(" ^ a ^ "*" ^ b ^ ")";
+
+"m" times "n" times "3" plus "i" plus "j" times "k";
+
+infixr 8 pow;
+fun (a pow b) = "(" ^ a ^ "#" ^ b ^ ")";
+
+"m" times "i" pow "j" pow "2" times "n";
+
+infix ++;
+fun ((x1,y1) ++ (x2,y2)) : vec = (x1+x2, y1+y2);
+
+b ++ (0.1,0.2) ++ (20.0,30.0);
+
+1+ ~3;
+
+op++ ((2.5,0.0), (0.1,2.5));
+op^ ("Mont","joy");
+
 (*
 (* WRITING RECURSIVE FUNCTIONS *)
 
