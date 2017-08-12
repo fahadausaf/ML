@@ -70,11 +70,39 @@ maxl [1,2,3,4,5];
 fun last [x]    = x
   | last(_::xs) = last xs;
 
+(* 3.4 List processing by numbers *)
 
+fun nlength [] =0
+  | nlength (x::xs) = 1 + nlength xs;
 
+nlength[[1,2,3], [4,5,6]];
 
+local
+  fun addlen (n, []) = n
+    | addlen (n, x::l) = addlen (n+1, l)
+in
+  fun length l = addlen (0,l)
+end;
 
+fun take ([], i) = []
+  | take (x::xs, i) = if i>0 then x::take(xs, i-1) else [];
 
+take (explode "Throw physic to the dogs!", 5);
+take([9,8,7,6],3);
+
+fun rtake ([], _, taken) = taken
+  | rtake (x::xs, i, taken) = if i>0 then rtake(xs, i-1, x::taken) else taken;
+
+rtake([9,8,7,6],3,[]);
+
+fun drop ([], _) = []
+  | drop (x::xs, i) = if i>0 then drop (xs, i-1)  else x::xs;
+
+take (["Never","shall","sun","that","morrow","see!"], 3);
+drop (["Never","shall","sun","that","morrow","see!"], 3);
+
+(* Exercise 3.4 Write a function nth (l, n) to return the nth element
+   of l (where the head is element 0) *)
 
 
 
