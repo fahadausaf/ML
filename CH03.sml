@@ -55,7 +55,20 @@ fun prod ns = if null ns then 1 else (hd ns) * (prod (tl ns));
 
 prod [1,2,3,4,5];
 
+(* Exercise 3.1 Write a version of maxl using null, hd and tl,
+  instead of pattern-matching. *)
 
+fun maxl l : int =
+    if null(tl l) then hd l
+    else if hd l > hd(tl l) then maxl(hd l :: tl(tl l))
+                            else maxl(tl l);
+
+maxl [1,2,3,4,5];
+
+(* Exercise 3.2 Write a function to return the last element of a list. *)
+
+fun last [x]    = x
+  | last(_::xs) = last xs;
 
 
 
