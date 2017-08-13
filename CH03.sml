@@ -111,7 +111,12 @@ nth (["Never","shall","sun","that","morrow","see!"], 3);
 
 (* 3.5: Append and Reverse *)
 
+[2,4,6] @ [8,10];
 
+fun nrev [] = []
+  | nrev (x::xs) = (nrev xs) @ [x];
+
+nrev [0,1,2,3,4,5,6,7,8,9];
 
 
 
