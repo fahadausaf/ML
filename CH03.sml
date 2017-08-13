@@ -104,6 +104,32 @@ drop (["Never","shall","sun","that","morrow","see!"], 3);
 (* Exercise 3.4 Write a function nth (l, n) to return the nth element
    of l (where the head is element 0) *)
 
+fun nth([], _) = []
+  | nth(x::xs, n) = if(n=1) then [x] else nth(xs, n-1);
+
+nth (["Never","shall","sun","that","morrow","see!"], 3);
+
+(* 3.5: Append and Reverse *)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
