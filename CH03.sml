@@ -152,11 +152,18 @@ fun unzip [] = ([],[])
       let val (xs,ys) = unzip pairs
       in (x::xs, y::ys) end;
 
+fun rev_unzip ([],xs,ys) = (xs,ys)
+  | rev_unzip ((x,y)::pairs, xs, ys) =
+      rev_unzip(pairs, x::xs, y::ys);
 
+(* Exercise 3.9 Give an equivalent definition of zip that does not depend upon
+the order in which patterns are considered. *)
 
+fun zip ([], _)      = []
+  | zip (_, [])      = []
+  | zip(x::xs,y::ys) = (x,y) :: zip(xs,ys);
 
-
-
+(* APPLICATIONS OF LISTS *)
 
 
 
