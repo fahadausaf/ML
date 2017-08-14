@@ -118,8 +118,19 @@ fun nrev [] = []
 
 nrev [0,1,2,3,4,5,6,7,8,9];
 
+fun revAppend ([], ys) = ys
+  | revAppend (x::xs, ys) = revAppend (xs, x::ys);
 
+revAppend (["Macbeth","and","Banquo"],["all","hail!"]);
 
+fun rev xs = revAppend(xs, []);
+
+infix @;
+fun xs @ [] = xs
+  | [] @ ys = ys
+  | (x::xs) @ ys = x :: (xs@ys);
+
+(* 3.6Lists of lists, lists of pairs *)
 
 
 
