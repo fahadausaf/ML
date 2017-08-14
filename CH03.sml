@@ -132,7 +132,25 @@ fun xs @ [] = xs
 
 (* 3.6Lists of lists, lists of pairs *)
 
+fun concat [] = []
+  | concat (l::ls) = l @ concat ls;
 
+concat [["When","shall"], ["we","three"], ["meet","again"]];
+
+fun zip(x::xs,y::ys) = (x,y) :: zip(xs,ys)
+  | zip _ = [];
+
+zip ([1,2,3,4,5,6,7,8,9],[1,2,3,4,5,6,7,8,9]);
+
+fun conspair ((x,y), (xs,ys)) = (x::xs, y::ys);
+
+fun unzip [] = ([],[])
+  | unzip (pair::pairs) = conspair(pair, unzip pairs);
+
+fun unzip [] = ([],[])
+  | unzip ((x,y)::pairs) =
+      let val (xs,ys) = unzip pairs
+      in (x::xs, y::ys) end;
 
 
 
