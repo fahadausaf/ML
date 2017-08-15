@@ -182,9 +182,19 @@ change (us_coins, 43);
 change([5,2], 16);
 *)
 
+(* Backtracking *)
 
+fun allChange (coins, coin , 0) = [coins]
+  | allChange (coins, [], amount) = []
+  | allChange (coins, c::coinvals, amount) =
+      if amount<0 then []
+      else allChange(c::coins, c::coinvals, amount-c) @
+           allChange(coins, coinvals, amount);
 
+allChange([], [10,2], 27);
 
+allChange([], [5,2], 16);
+allChange([], gb_coins, 16);
 
 
 
