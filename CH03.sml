@@ -165,9 +165,22 @@ fun zip ([], _)      = []
 
 (* APPLICATIONS OF LISTS *)
 
+(* 3.7: Making Change *)
 
+fun change (coinvals, 0) = []
+  | change (c::coinvals, amount) =
+      if amount<c then change (coinvals, amount)
+      else c::change(c::coinvals, amount-c);
 
+val gb_coins = [50,20,10,5,2,1]
+and us_coins = [25,10,5,1];
 
+change (gb_coins, 43);
+change (us_coins, 43);
+
+(*
+change([5,2], 16);
+*)
 
 
 
