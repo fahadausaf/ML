@@ -34,6 +34,14 @@ fun title(name) = "The Duke of " ^ name;
 title "York";
 "This above all:\nto thine own self be true\n";
 
+chr(65);
+chr(66);
+chr(67);
+chr(49 + 48);
+ord(#"A");
+ord(#"B");
+ord(#"0");
+
 fun digit i = chr(i + ord #"0");
 digit 49;
 
@@ -46,8 +54,18 @@ fun sign n =
   else if n=0 then 0
   else (*n<0*) ~1;
 
+sign 5;
+sign 0;
+sign 4-8;
+sign ~4;
+
 fun isLower c = #"a" <= c andalso c <= #"z";
 
+isLower #"c";
+isLower #"H";
+
+
+(*)
 (* PAIRS, TUPLES AND RECORDS *)
 
 (2.5, ~1.2);
