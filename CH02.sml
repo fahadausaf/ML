@@ -88,7 +88,6 @@ fun validDate(d,m) =
 validDate (25,"February");
 validDate (28,"February");
 validDate (30,"February");
- (*)
 
 
 (* PAIRS, TUPLES AND RECORDS *)
@@ -97,7 +96,7 @@ validDate (30,"February");
 
 val zerovec = (0.0, 0.0);
 val a = (1.5, 6.8);
-val b = (3.6, 0.0);
+val b = (3.6, 0.9);
 
 fun lengthvec (x,y) = Math.sqrt(x*x + y*y);
 lengthvec (1.0, 1.0);
