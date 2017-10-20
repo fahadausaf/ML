@@ -64,8 +64,33 @@ fun isLower c = #"a" <= c andalso c <= #"z";
 isLower #"c";
 isLower #"H";
 
+(*
+Exercise 2.5 Let d be an integer and m a string. Write an ML boolean expression
+that is true just when d and m form a valid date: say 25 and "October".
+Assume it is not a leap year.
+*)
 
-(*)
+fun validDate(d,m) =
+1<=d andalso
+(m = "January"   andalso d<=31  orelse
+ m = "February"  andalso d<=28  orelse
+ m = "March"     andalso d<=31  orelse
+ m = "April"     andalso d<=30  orelse
+ m = "May"       andalso d<=31  orelse
+ m = "June"      andalso d<=30  orelse
+ m = "July"      andalso d<=31  orelse
+ m = "August"    andalso d<=31  orelse
+ m = "September" andalso d<=30  orelse
+ m = "October"   andalso d<=31  orelse
+ m = "November"  andalso d<=30  orelse
+ m = "December"  andalso d<=31);
+
+validDate (25,"February");
+validDate (28,"February");
+validDate (30,"February");
+ (*)
+
+
 (* PAIRS, TUPLES AND RECORDS *)
 
 (2.5, ~1.2);
