@@ -238,14 +238,19 @@ b ++ (0.1,0.2) ++ (20.0,30.0);
 op++ ((2.5,0.0), (0.1,2.5));
 op^ ("Mont","joy");
 
-(*)
+(*nonfix permanently change infix to prefix*)
+(*
+nonfix *;
+*(3,2);
+*)
+
 (* THE EVALUATION OF EXPRESSIONS *)
 
 fun sqr(x) : int = x*x;
 
 fun zero(x: int) = 0;
 
-(* 2.12 recursive functions under call-by-name *)
+(* 2.12 recursive functions under call-by-value *)
 
 fun fact n =
   if n=0 then 1 else n * fact(n-1);
@@ -262,10 +267,16 @@ fun cond (p,x,y): int = if p then x else y;
 fun badf n = cond(n=0, 1, n*badf(n-1));
 
 fun even n = (n mod 2 = 0);
+
+even 5;
+even 4;
+
 fun powoftwo n =
   (n=1) orelse
   (even(n) andalso powoftwo(n div 2));
 
+
+(*)
 (* WRITING RECURSIVE FUNCTIONS *)
 
 fun gcd(m,n) =
