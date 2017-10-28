@@ -210,7 +210,9 @@ fun (p xor q) = (p orelse q) andalso not (p andalso q);
 
 true xor false xor true;
 
+(*operator precedence*)
 infix 6 plus;
+
 fun (a plus b) = "(" ^ a ^ "+" ^ b ^ ")";
 
 "1" plus "2" plus "3";
@@ -232,10 +234,11 @@ b ++ (0.1,0.2) ++ (20.0,30.0);
 
 1+ ~3;
 
+(*op keyword changes infix operator to prefix*)
 op++ ((2.5,0.0), (0.1,2.5));
 op^ ("Mont","joy");
 
-
+(*)
 (* THE EVALUATION OF EXPRESSIONS *)
 
 fun sqr(x) : int = x*x;
