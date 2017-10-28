@@ -1,4 +1,6 @@
 (* VALUE DECLARATIONS *)
+
+
 val seconds = 60;
 val minutes = 60;
 val hours = 24;
@@ -181,6 +183,14 @@ val richardIII =
     died    = 1485,
     quote   = "Plots have I laid..." };
 
+val {name=nameV, born=bornV, ...} = henryV;
+
+val {name,born,died,quote,crowned} = richardIII;
+
+#quote richardIII;
+
+(* declaring a record type *)
+
 type king =
   { name    : string,
     born    : int,
@@ -190,7 +200,6 @@ type king =
 
 fun lifetime(k: king) = #died k - #born k;
 
-lifetime henryVI;
 lifetime henryV;
 lifetime richardIII;
 
