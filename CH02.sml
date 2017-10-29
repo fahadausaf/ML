@@ -275,8 +275,11 @@ fun powoftwo n =
   (n=1) orelse
   (even(n) andalso powoftwo(n div 2));
 
+powoftwo 2;
+powoftwo 4;
+powoftwo 6;
+powoftwo 8;
 
-(*)
 (* WRITING RECURSIVE FUNCTIONS *)
 
 fun gcd(m,n) =
@@ -284,7 +287,7 @@ fun gcd(m,n) =
   else gcd(n mod m, m);
 
 gcd(5499,6812);
-
+(*)
 fun power(x,k) : real =
   if k=1 then x
   else if k mod 2 = 0 then power(x*x, k div 2)
