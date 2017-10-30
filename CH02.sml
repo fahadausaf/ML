@@ -392,8 +392,6 @@ and sumup k = if k<1 then 0 else P(k) + sumup(k-1);
 
 P 5;
 
-(*)
-
 (* INRODUCTION TO MODULES *)
 
 type complex = real*real;
@@ -488,19 +486,3 @@ fun silly x = fstfst(pairself(pairself x));
 silly "Hold off your hands.";
 
 fun I x = x;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-(**)
