@@ -329,8 +329,6 @@ fun introot n = if n=0 then 0 else increase(2 * introot(n div 4), n);
 
 introot 16;
 
-(*
-
 (* LOCAL DECLARATIONS *)
 
 fun fraction (n,d) = (n div gcd(n,d), d div gcd(n,d));
@@ -366,6 +364,7 @@ fun sqroot2 a =
 sqroot2 3.0;
 it*it;
 
+(*
 (* 2.19 Simultaneous declarations *)
 
 val pi = 4.0 * Math.atan 1.0
