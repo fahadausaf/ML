@@ -298,7 +298,7 @@ power(2.0,29);
 power(2.0,10);
 power(1.01,925);
 Math.pow(1.01,925.0);
-(*)
+
 fun nextfib(prev, curr :int) = (curr, prev+curr);
 
 nextfib(0,1);
@@ -308,15 +308,19 @@ nextfib it;
 
 fun fibpair (n) = if n=1 then (0,1) else nextfib(fibpair(n-1));
 
+fibpair 5;
 fibpair 30;
+
 
 fun itfib (n, prev, curr) : int =
   if n=1 then curr            (*does not work for n=0*)
   else itfib (n-1, curr, prev+curr);
 
 fun fib(n) = itfib(n,0,1);
+fib 5;
+fib 7;
 fib 30;
-
+(*)
 (* LOCAL DECLARATIONS *)
 
 fun fraction (n,d) = (n div gcd(n,d), d div gcd(n,d));
