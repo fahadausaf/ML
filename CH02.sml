@@ -364,7 +364,7 @@ fun sqroot2 a =
 sqroot2 3.0;
 it*it;
 
-(*
+
 (* 2.19 Simultaneous declarations *)
 
 val pi = 4.0 * Math.atan 1.0
@@ -391,6 +391,8 @@ fun P n = 1 + sumup(n-1)
 and sumup k = if k<1 then 0 else P(k) + sumup(k-1);
 
 P 5;
+
+(*)
 
 (* INRODUCTION TO MODULES *)
 
