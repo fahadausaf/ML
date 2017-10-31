@@ -26,11 +26,13 @@ fun maxl [m]: int = m
   | maxl (m::n::ns) = if m>n then maxl(m::ns) else maxl(n::ns);
 
 maxl [~4, 0, ~12];
-(*)
+
 fun factl (n) = prod(upto(1,n));
 factl 7;
+factl 5;
 
 explode "Banquo";
+implode it;
 
 (* SOME FUNDAMENTAL LIST FUNCTIONS *)
 
@@ -44,6 +46,7 @@ fun hd (x::_) = x;
 hd[[[1,2],[3]], [[4]]];
 hd it;
 hd it;
+
 
 fun tl (_::xs) = xs;
 
@@ -83,6 +86,10 @@ local
 in
   fun length l = addlen (0,l)
 end;
+
+length (explode "Throw physics to the dogs!");
+
+length[[1,2,3], [4,5,6]];
 
 fun take ([], i) = []
   | take (x::xs, i) = if i>0 then x::take(xs, i-1) else [];
@@ -125,6 +132,8 @@ revAppend (["Macbeth","and","Banquo"],["all","hail!"]);
 
 fun rev xs = revAppend(xs, []);
 
+(* 3.5 Modify the append function to handle xs @ [] efficiently *)
+
 infix @;
 fun xs @ [] = xs
   | [] @ ys = ys
@@ -141,7 +150,7 @@ fun zip(x::xs,y::ys) = (x,y) :: zip(xs,ys)
   | zip _ = [];
 
 zip ([1,2,3,4,5,6,7,8,9],[1,2,3,4,5,6,7,8,9]);
-
+(*)
 fun conspair ((x,y), (xs,ys)) = (x::xs, y::ys);
 
 fun unzip [] = ([],[])
