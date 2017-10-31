@@ -26,7 +26,7 @@ fun maxl [m]: int = m
   | maxl (m::n::ns) = if m>n then maxl(m::ns) else maxl(n::ns);
 
 maxl [~4, 0, ~12];
-
+(*)
 fun factl (n) = prod(upto(1,n));
 factl 7;
 
