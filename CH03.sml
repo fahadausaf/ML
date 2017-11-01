@@ -150,7 +150,7 @@ fun zip(x::xs,y::ys) = (x,y) :: zip(xs,ys)
   | zip _ = [];
 
 zip ([1,2,3,4,5,6,7,8,9],[1,2,3,4,5,6,7,8,9]);
-(*)
+
 fun conspair ((x,y), (xs,ys)) = (x::xs, y::ys);
 
 fun unzip [] = ([],[])
@@ -203,8 +203,9 @@ fun allChange (coins, coin , 0) = [coins]
 allChange([], [10,2], 27);
 
 allChange([], [5,2], 16);
-allChange([], gb_coins, 16);
 
+allChange([], gb_coins, 16);
+(*)
 (*
 Exercise 3.11 Write a function to express integers as Roman numerals. Supplied
 with suitable arguments, your function should be able to express 1984 as either
